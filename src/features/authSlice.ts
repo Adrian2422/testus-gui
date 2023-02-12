@@ -1,5 +1,6 @@
 import {UserEntity} from '../api/openapi';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RootState} from '../app/store';
 
 type AuthState = {
     user: UserEntity | null;
@@ -26,6 +27,9 @@ const authSlice = createSlice({
         }
     }
 });
+
+export const selectCurrentUser = (state: RootState) => state.auth.user;
+export const selectCurrentToken = (state: RootState) => state.auth.token;
 
 export const { LOG_IN, LOG_OUT } = authSlice.actions;
 export  default authSlice.reducer;
